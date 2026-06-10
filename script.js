@@ -193,34 +193,5 @@ document.addEventListener("mousemove", (e) => {
   cursorGlow.style.top = e.clientY - 250 + "px";
 });
 
-// ============ CONTACT FORM ============
-document.getElementById("contact-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const btn = document.getElementById("submit-btn");
-  const status = document.getElementById("form-status");
-  btn.textContent = "Sending...";
-  btn.disabled = true;
-  setTimeout(() => {
-    btn.textContent = "Send Message →";
-    btn.disabled = false;
-    status.className = "text-center text-sm form-success";
-    status.textContent = "✓ Message sent successfully! I'll get back to you soon.";
-    status.classList.remove("hidden");
-    e.target.reset();
-    setTimeout(() => status.classList.add("hidden"), 5000);
-  }, 1500);
-});
+// Native functionality enabled.
 
-// ============ CV DOWNLOAD SIMULATION ============
-document.getElementById("download-cv").addEventListener("click", (e) => {
-  e.preventDefault();
-  const btn = e.currentTarget;
-  const originalText = btn.innerHTML;
-  btn.innerHTML = "Preparing PDF...";
-  setTimeout(() => {
-    btn.innerHTML = "✓ Download Started";
-    setTimeout(() => {
-      btn.innerHTML = originalText;
-    }, 2000);
-  }, 1000);
-});

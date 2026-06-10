@@ -85,7 +85,7 @@
           class="group px-8 py-3.5 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 font-medium transition-all duration-300 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] hover:scale-105">View
           My Work <span
             class="inline-block ml-1 transition-transform duration-300 group-hover:translate-x-1">→</span></a>
-        <a href="#" id="download-cv"
+        <a href="My_Cv_IT_02.pdf" download="Gayan_Wickramarathna_CV.pdf" id="download-cv"
           class="px-8 py-3.5 rounded-full border border-white/20 font-medium hover:bg-white/10 transition-all duration-300 hover:border-white/40 flex items-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -106,7 +106,7 @@
     <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
       <div class="anim-slide-right relative">
         <div class="relative rounded-2xl overflow-hidden aspect-[4/5] max-w-md mx-auto lg:mx-0">
-          <img src="assets/images/profile 2.JPG" alt="Gayan Chanuka Wickramarathna"
+          <img src="assets/images/profile 3.jpeg" alt="Gayan Chanuka Wickramarathna"
             class="w-full h-full object-cover" />
           <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent"></div>
         </div>
@@ -221,23 +221,23 @@
         <p class="text-gray-400 mt-4 max-w-lg mx-auto">Have a project in mind or want to collaborate? Let's build
           something great together.</p>
       </div>
-      <form id="contact-form"
+      <form action="https://formspree.io/f/xvzlpqrz" method="POST" id="contact-form"
         class="anim-reveal space-y-6 bg-white/[0.03] border border-white/10 rounded-2xl p-8 sm:p-10 backdrop-blur-sm">
         <div class="grid sm:grid-cols-2 gap-6">
-          <div><label for="name" class="block text-sm text-gray-400 mb-2">Name</label><input type="text" id="name"
+          <div><label for="name" class="block text-sm text-gray-400 mb-2">Name</label><input type="text" id="name" name="name"
               required placeholder="Your name"
               class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/30 transition-all" />
           </div>
-          <div><label for="email" class="block text-sm text-gray-400 mb-2">Email</label><input type="email" id="email"
+          <div><label for="email" class="block text-sm text-gray-400 mb-2">Email</label><input type="email" id="email" name="email"
               required placeholder="your@email.com"
               class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/30 transition-all" />
           </div>
         </div>
         <div><label for="subject" class="block text-sm text-gray-400 mb-2">Subject</label><input type="text"
-            id="subject" placeholder="Project inquiry"
+            id="subject" name="_subject" placeholder="Project inquiry"
             class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/30 transition-all" />
         </div>
-        <div><label for="message" class="block text-sm text-gray-400 mb-2">Message</label><textarea id="message"
+        <div><label for="message" class="block text-sm text-gray-400 mb-2">Message</label><textarea id="message" name="message"
             rows="5" required placeholder="Tell me about your project..."
             class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/30 transition-all resize-none"></textarea>
         </div>
