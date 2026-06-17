@@ -60,7 +60,7 @@ const projects = [
 ];
 
 const education = [
-  { icon: "🎓", title: "BSc (Hons) in IT — Specializing in ISE", place: "Sri Lanka Institute of Information Technology (SLIIT)", status: "Reading — 2nd Year", color: "purple" },
+  { icon: "🎓", title: "BSc (Hons) in IT — Specializing in ISE", place: "Sri Lanka Institute of Information Technology (SLIIT)", status: "Reading — 3rd Year", color: "purple" },
   { icon: "📜", title: "Certified Level 01 — AAT Sri Lanka", place: "Association of Accounting Technicians", status: "Completed", color: "pink" },
   { icon: "🧠", title: "Diploma in Psychology & Counselling", place: "IMBS Campus", status: "Reading", color: "cyan" },
 ];
@@ -121,7 +121,7 @@ function renderProjects(filter = "all") {
         <h3 class="text-lg font-semibold font-['Space_Grotesk']">${p.title}</h3>
         <p class="text-gray-400 text-sm mt-1 mb-3">${p.desc}</p>
         <div class="flex flex-wrap gap-1.5 mb-3">${techHtml}</div>
-        <a href="${linkUrl}" target="_blank" class="inline-flex items-center gap-2 text-sm text-purple-400 hover:text-purple-300 transition-colors">
+        <a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-purple-400 hover:text-purple-300 transition-colors">
           ${linkIcon}
           ${linkLabel}
         </a>
@@ -131,7 +131,7 @@ function renderProjects(filter = "all") {
         <h3 class="text-base font-semibold font-['Space_Grotesk'] mt-1">${p.title}</h3>
         <p class="text-gray-500 text-sm mt-1 mb-3">${p.desc}</p>
         <div class="flex flex-wrap gap-1.5 mb-3">${techHtml}</div>
-        <a href="${linkUrl}" target="_blank" class="inline-flex items-center gap-2 text-sm text-purple-400 hover:text-purple-300 transition-colors">
+        <a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-purple-400 hover:text-purple-300 transition-colors">
           ${linkIcon}
           ${linkLabel}
         </a>
@@ -146,8 +146,12 @@ renderProjects();
 // Filter Logic
 document.querySelectorAll(".filter-btn").forEach(btn => {
   btn.addEventListener("click", () => {
-    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active", "border-purple-500/50", "bg-purple-500/10"));
+    document.querySelectorAll(".filter-btn").forEach(b => {
+      b.classList.remove("active", "border-purple-500/50", "bg-purple-500/10");
+      b.setAttribute("aria-pressed", "false");
+    });
     btn.classList.add("active", "border-purple-500/50", "bg-purple-500/10");
+    btn.setAttribute("aria-pressed", "true");
     renderProjects(btn.dataset.filter);
   });
 });
@@ -203,6 +207,7 @@ let menuOpen = false;
 mobileToggle.addEventListener("click", () => {
   menuOpen = !menuOpen;
   mobileMenu.style.maxHeight = menuOpen ? mobileMenu.scrollHeight + "px" : "0";
+  mobileToggle.setAttribute("aria-expanded", menuOpen ? "true" : "false");
   const spans = mobileToggle.querySelectorAll("span");
   spans[0].style.transform = menuOpen ? "rotate(45deg) translate(4px, 4px)" : "";
   spans[1].style.opacity = menuOpen ? "0" : "1";
@@ -222,11 +227,14 @@ document.querySelectorAll(".mobile-link").forEach((link) => {
 });
 
 // ============ CURSOR GLOW ============
+// Only enable cursor glow on non-touch devices
 const cursorGlow = document.getElementById("cursor-glow");
-document.addEventListener("mousemove", (e) => {
-  cursorGlow.style.left = e.clientX - 250 + "px";
-  cursorGlow.style.top = e.clientY - 250 + "px";
-});
-
-// Native functionality enabled.
-
+if (window.matchMedia("(pointer: fine)").matches) {
+  document.addEventListener("mousemove", (e) => {
+    cursorGlow.style.left = e.clientX - 250 + "px";
+    cursorGlow.style.top = e.clientY - 250 + "px";
+  });
+} else {
+  // Hide cursor glow on touch/mobile devices
+  cursorGlow.style.display = "none";
+}
