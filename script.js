@@ -64,14 +64,14 @@ const education = [
   { icon: "🎓", title: "BSc (Hons) in IT — Specializing in ISE", place: "Sri Lanka Institute of Information Technology (SLIIT)", status: "Reading — 3rd Year", color: "purple" },
   { icon: "📜", title: "Certified Level 01 — AAT Sri Lanka", place: "Association of Accounting Technicians", status: "Completed", color: "pink" },
   { icon: "🧐", title: "Diploma in Psychology & Counselling", place: "IMBS Campus", status: "Reading", color: "cyan" },
-  // ---- Certifications ----
-  { icon: "📊", title: "Unlock the Power of Data with Power BI", place: "Microsoft (via Coursera)", status: "Issued: Jul 2026", color: "blue", link: "https://coursera.org/verify/AQ7A0UOCWDL9" },
-  { icon: "🤖", title: "AI/ML Engineer — Stage 1", place: "Centre for Open & Distance Education (CODE), SLIIT", status: "Issued: Jun 2026", color: "purple", link: "https://code.sliit.org/certificates/oxphywpinj" },
-  { icon: "📋", title: "Foundations of Project Management", place: "Dept. of Civil Engineering, University of Moratuwa", status: "Issued: 2026", color: "green", code: "15ca5GThNR", link: "https://open.uom.lk/verify" },
-  { icon: "💬", title: "Claude Platform 101", place: "Anthropic", status: "Issued: 2026", color: "orange" },
-  { icon: "💻", title: "Claude Code 101", place: "Anthropic", status: "Issued: 2026", color: "orange" },
-  { icon: "🤝", title: "Introduction to Claude", place: "Anthropic", status: "Issued: 2026", color: "orange" },
-  { icon: "⏰", title: "The Hour of Code", place: "Code.org", status: "Issued: 2026", color: "cyan" },
+  // ---- Certifications (with images) ----
+  { icon: "📊", title: "Unlock the Power of Data with Power BI", place: "Microsoft (via Coursera)", status: "Issued: Jul 2026", color: "blue",  img: "assets/images/cert-powerbi.png",          link: "https://coursera.org/verify/AQ7A0UOCWDL9" },
+  { icon: "🤖", title: "AI/ML Engineer — Stage 1",               place: "Centre for Open & Distance Education (CODE), SLIIT", status: "Issued: Jun 2026", color: "purple", img: "assets/images/cert-aiml.png",            link: "https://code.sliit.org/certificates/oxphywpinj" },
+  { icon: "📋", title: "Foundations of Project Management",       place: "Dept. of Civil Engineering, University of Moratuwa", status: "Issued: 2026",     color: "green",  img: "assets/images/cert-pm.png",             link: "https://open.uom.lk/verify", code: "15ca5GThNR" },
+  { icon: "💬", title: "Claude Platform 101",                      place: "Anthropic",                                          status: "Issued: 2026",     color: "orange", img: "assets/images/cert-claude-platform.png" },
+  { icon: "💻", title: "Claude Code 101",                          place: "Anthropic",                                          status: "Issued: 2026",     color: "orange", img: "assets/images/cert-claude-code.png" },
+  { icon: "🤝", title: "Introduction to Claude",                   place: "Anthropic",                                          status: "Issued: 2026",     color: "orange", img: "assets/images/cert-claude-intro.png" },
+  { icon: "⏰", title: "The Hour of Code",                         place: "Code.org",                                           status: "Issued: 2026",     color: "cyan",   img: "assets/images/cert-hourofcode.png" },
 ];
 
 // ============ RENDER SKILLS ============
@@ -167,35 +167,61 @@ document.querySelectorAll(".filter-btn").forEach(btn => {
 
 // ============ RENDER EDUCATION ============
 const educationGrid = document.getElementById("education-grid");
+const certGrid = document.getElementById("cert-grid");
+
 education.forEach((e, i) => {
   const card = document.createElement("div");
-  card.className = "anim-reveal p-6 rounded-2xl bg-white/[0.03] border border-white/10 flex items-start gap-5 hover:border-purple-500/25 transition-all duration-300";
-  card.style.animationDelay = `${i * 0.1}s`;
-  // Green for completed/issued, yellow for in-progress
+  const hasCert = !!e.img;
   const statusColor = (e.status === "Completed" || e.status.startsWith("Issued")) ? "text-green-400" : "text-yellow-400";
-  // Optional certification code badge
-  const codeBadge = e.code ? `<span class="ml-1 px-2 py-0.5 text-[10px] rounded-full bg-white/5 text-gray-500 font-mono">Code: ${e.code}</span>` : "";
-  // Optional verification link button
-  const certLink = e.link ? `
-    <a href="${e.link}" target="_blank" rel="noopener noreferrer"
-      class="inline-flex items-center gap-1.5 mt-3 px-3 py-1.5 text-xs rounded-lg border border-purple-500/30 text-purple-400 hover:bg-purple-500/10 hover:border-purple-500/60 transition-all duration-200">
-      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
-      Verify Certificate
-    </a>` : "";
-  card.innerHTML = `
-    <div class="text-3xl mt-1 flex-shrink-0">${e.icon}</div>
-    <div class="min-w-0 flex-1">
-      <h3 class="text-base font-semibold font-['Space_Grotesk'] mb-1 leading-snug">${e.title}</h3>
-      <p class="text-gray-500 text-sm">${e.place}</p>
-      <div class="flex flex-wrap items-center gap-2 mt-2">
-        <span class="px-3 py-1 text-xs rounded-full bg-white/5 ${statusColor}">${e.status}</span>
-        ${codeBadge}
+  const codeBadge = e.code ? `<span class="px-2 py-0.5 text-[10px] rounded-full bg-white/5 text-gray-500 font-mono">Code: ${e.code}</span>` : "";
+  const certLink = e.link
+    ? `<a href="${e.link}" target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 mt-3 px-3 py-1.5 text-xs rounded-lg border border-purple-500/30 text-purple-400 hover:bg-purple-500/10 hover:border-purple-500/60 transition-all duration-200">
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+        Verify Certificate
+      </a>`
+    : "";
+
+  if (hasCert) {
+    // Certificate image card → goes in cert-grid
+    card.className = "cert-card anim-reveal rounded-2xl overflow-hidden bg-white/[0.03] border border-white/10 hover:border-purple-500/30 hover:-translate-y-1 transition-all duration-300";
+    card.style.animationDelay = `${i * 0.08}s`;
+    card.innerHTML = `
+      <div class="cert-img-wrap overflow-hidden">
+        <img src="${e.img}" alt="${e.title} certificate" loading="lazy"
+          class="w-full object-cover transition-transform duration-500 group-hover:scale-105" />
       </div>
-      ${certLink}
-    </div>
-  `;
-  educationGrid.appendChild(card);
+      <div class="p-4">
+        <h3 class="text-sm font-semibold font-['Space_Grotesk'] mb-1 leading-snug">${e.title}</h3>
+        <p class="text-gray-500 text-xs mb-2">${e.place}</p>
+        <div class="flex flex-wrap items-center gap-1.5">
+          <span class="px-2 py-0.5 text-[10px] rounded-full bg-white/5 ${statusColor}">${e.status}</span>
+          ${codeBadge}
+        </div>
+        ${certLink}
+      </div>
+    `;
+    certGrid.appendChild(card);
+  } else {
+    // Degree / diploma card → goes in education-grid (list style)
+    card.className = "anim-reveal p-6 rounded-2xl bg-white/[0.03] border border-white/10 flex items-start gap-5 hover:border-purple-500/25 transition-all duration-300";
+    card.style.animationDelay = `${i * 0.08}s`;
+    card.innerHTML = `
+      <div class="text-3xl mt-1 flex-shrink-0">${e.icon}</div>
+      <div class="min-w-0 flex-1">
+        <h3 class="text-base font-semibold font-['Space_Grotesk'] mb-1 leading-snug">${e.title}</h3>
+        <p class="text-gray-500 text-sm">${e.place}</p>
+        <div class="flex flex-wrap items-center gap-2 mt-2">
+          <span class="px-3 py-1 text-xs rounded-full bg-white/5 ${statusColor}">${e.status}</span>
+          ${codeBadge}
+        </div>
+        ${certLink}
+      </div>
+    `;
+    educationGrid.appendChild(card);
+  }
 });
+
 
 // ============ SCROLL ANIMATIONS ============
 
