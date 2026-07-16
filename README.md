@@ -30,6 +30,15 @@ The portfolio programmatically mounts and handles various full-stack and enginee
 4. Air Drawing Project — Computer vision application powered by Python, OpenCV, and NumPy gesture tracking.
 5. IoT Based Embedded System — Hardware orchestration and smart automation using ESP32 and C++.
 
+👤 Author
+Gayan Chanuka Wickramarathna
+
+Information Systems Engineering Undergraduate at SLIIT
+
+LinkedIn: [gayan-wickramarathna](https://www.linkedin.com/in/gayan-wickramarathna-/)
+
+GitHub: @GayanGC
+
 🔧 Installation & Local Setup
 
 To run this portfolio locally on your machine, clone the repository and open the local server environment:
@@ -43,3 +52,8 @@ cd my-portfolio-web
 
 # Open the project in your preferred editor (e.g., VS Code or Antigravity)
 code .
+
+
+
+
+
