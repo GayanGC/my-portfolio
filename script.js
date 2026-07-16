@@ -65,9 +65,9 @@ const education = [
   { icon: "📜", title: "Certified Level 01 — AAT Sri Lanka", place: "Association of Accounting Technicians", status: "Completed", color: "pink" },
   { icon: "🧐", title: "Diploma in Psychology & Counselling", place: "IMBS Campus", status: "Reading", color: "cyan" },
   // ---- Certifications ----
-  { icon: "📊", title: "Unlock the Power of Data with Power BI", place: "Microsoft (via Coursera)", status: "Issued: Jul 2026", color: "blue" },
-  { icon: "🤖", title: "AI/ML Engineer — Stage 1", place: "Centre for Open & Distance Education (CODE), SLIIT", status: "Issued: Jun 2026", color: "purple" },
-  { icon: "📋", title: "Foundations of Project Management", place: "Dept. of Civil Engineering, University of Moratuwa", status: "Issued: 2026", color: "green", code: "15ca5GThNR" },
+  { icon: "📊", title: "Unlock the Power of Data with Power BI", place: "Microsoft (via Coursera)", status: "Issued: Jul 2026", color: "blue", link: "https://coursera.org/verify/AQ7A0UOCWDL9" },
+  { icon: "🤖", title: "AI/ML Engineer — Stage 1", place: "Centre for Open & Distance Education (CODE), SLIIT", status: "Issued: Jun 2026", color: "purple", link: "https://code.sliit.org/certificates/oxphywpinj" },
+  { icon: "📋", title: "Foundations of Project Management", place: "Dept. of Civil Engineering, University of Moratuwa", status: "Issued: 2026", color: "green", code: "15ca5GThNR", link: "https://open.uom.lk/verify" },
   { icon: "💬", title: "Claude Platform 101", place: "Anthropic", status: "Issued: 2026", color: "orange" },
   { icon: "💻", title: "Claude Code 101", place: "Anthropic", status: "Issued: 2026", color: "orange" },
   { icon: "🤝", title: "Introduction to Claude", place: "Anthropic", status: "Issued: 2026", color: "orange" },
@@ -174,7 +174,14 @@ education.forEach((e, i) => {
   // Green for completed/issued, yellow for in-progress
   const statusColor = (e.status === "Completed" || e.status.startsWith("Issued")) ? "text-green-400" : "text-yellow-400";
   // Optional certification code badge
-  const codeBadge = e.code ? `<span class="ml-2 px-2 py-0.5 text-[10px] rounded-full bg-white/5 text-gray-500 font-mono">Code: ${e.code}</span>` : "";
+  const codeBadge = e.code ? `<span class="ml-1 px-2 py-0.5 text-[10px] rounded-full bg-white/5 text-gray-500 font-mono">Code: ${e.code}</span>` : "";
+  // Optional verification link button
+  const certLink = e.link ? `
+    <a href="${e.link}" target="_blank" rel="noopener noreferrer"
+      class="inline-flex items-center gap-1.5 mt-3 px-3 py-1.5 text-xs rounded-lg border border-purple-500/30 text-purple-400 hover:bg-purple-500/10 hover:border-purple-500/60 transition-all duration-200">
+      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+      Verify Certificate
+    </a>` : "";
   card.innerHTML = `
     <div class="text-3xl mt-1 flex-shrink-0">${e.icon}</div>
     <div class="min-w-0 flex-1">
@@ -184,6 +191,7 @@ education.forEach((e, i) => {
         <span class="px-3 py-1 text-xs rounded-full bg-white/5 ${statusColor}">${e.status}</span>
         ${codeBadge}
       </div>
+      ${certLink}
     </div>
   `;
   educationGrid.appendChild(card);
