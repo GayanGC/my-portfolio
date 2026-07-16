@@ -60,9 +60,18 @@ const projects = [
 ];
 
 const education = [
+  // ---- Degrees & Diplomas ----
   { icon: "🎓", title: "BSc (Hons) in IT — Specializing in ISE", place: "Sri Lanka Institute of Information Technology (SLIIT)", status: "Reading — 3rd Year", color: "purple" },
   { icon: "📜", title: "Certified Level 01 — AAT Sri Lanka", place: "Association of Accounting Technicians", status: "Completed", color: "pink" },
-  { icon: "🧠", title: "Diploma in Psychology & Counselling", place: "IMBS Campus", status: "Reading", color: "cyan" },
+  { icon: "🧐", title: "Diploma in Psychology & Counselling", place: "IMBS Campus", status: "Reading", color: "cyan" },
+  // ---- Certifications ----
+  { icon: "📊", title: "Unlock the Power of Data with Power BI", place: "Microsoft (via Coursera)", status: "Issued: Jul 2026", color: "blue" },
+  { icon: "🤖", title: "AI/ML Engineer — Stage 1", place: "Centre for Open & Distance Education (CODE), SLIIT", status: "Issued: Jun 2026", color: "purple" },
+  { icon: "📋", title: "Foundations of Project Management", place: "Dept. of Civil Engineering, University of Moratuwa", status: "Issued: 2026", color: "green", code: "15ca5GThNR" },
+  { icon: "💬", title: "Claude Platform 101", place: "Anthropic", status: "Issued: 2026", color: "orange" },
+  { icon: "💻", title: "Claude Code 101", place: "Anthropic", status: "Issued: 2026", color: "orange" },
+  { icon: "🤝", title: "Introduction to Claude", place: "Anthropic", status: "Issued: 2026", color: "orange" },
+  { icon: "⏰", title: "The Hour of Code", place: "Code.org", status: "Issued: 2026", color: "cyan" },
 ];
 
 // ============ RENDER SKILLS ============
@@ -161,20 +170,27 @@ const educationGrid = document.getElementById("education-grid");
 education.forEach((e, i) => {
   const card = document.createElement("div");
   card.className = "anim-reveal p-6 rounded-2xl bg-white/[0.03] border border-white/10 flex items-start gap-5 hover:border-purple-500/25 transition-all duration-300";
-  card.style.animationDelay = `${i * 0.12}s`;
-  const statusColor = e.status === "Completed" ? "text-green-400" : "text-yellow-400";
+  card.style.animationDelay = `${i * 0.1}s`;
+  // Green for completed/issued, yellow for in-progress
+  const statusColor = (e.status === "Completed" || e.status.startsWith("Issued")) ? "text-green-400" : "text-yellow-400";
+  // Optional certification code badge
+  const codeBadge = e.code ? `<span class="ml-2 px-2 py-0.5 text-[10px] rounded-full bg-white/5 text-gray-500 font-mono">Code: ${e.code}</span>` : "";
   card.innerHTML = `
-    <div class="text-3xl mt-1">${e.icon}</div>
-    <div>
-      <h3 class="text-lg font-semibold font-['Space_Grotesk'] mb-1">${e.title}</h3>
+    <div class="text-3xl mt-1 flex-shrink-0">${e.icon}</div>
+    <div class="min-w-0 flex-1">
+      <h3 class="text-base font-semibold font-['Space_Grotesk'] mb-1 leading-snug">${e.title}</h3>
       <p class="text-gray-500 text-sm">${e.place}</p>
-      <span class="inline-block mt-2 px-3 py-1 text-xs rounded-full bg-white/5 ${statusColor}">${e.status}</span>
+      <div class="flex flex-wrap items-center gap-2 mt-2">
+        <span class="px-3 py-1 text-xs rounded-full bg-white/5 ${statusColor}">${e.status}</span>
+        ${codeBadge}
+      </div>
     </div>
   `;
   educationGrid.appendChild(card);
 });
 
 // ============ SCROLL ANIMATIONS ============
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
