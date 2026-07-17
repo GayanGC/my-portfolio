@@ -179,9 +179,21 @@
   transform: scale(1.06);
 }
 
+/* ========== Referee Card ========== */
+.referee-card {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.referee-card:hover {
+  border-color: rgba(168,85,247,0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
 /* ========== Focus Visible ========== */
 a:focus-visible, button:focus-visible {
   outline: 2px solid rgba(168,85,247,0.7);
   outline-offset: 3px;
   border-radius: 4px;
 }
+

@@ -74,6 +74,22 @@ const education = [
   { icon: "⏰", title: "The Hour of Code",                         place: "Code.org",                                           status: "Issued: 2026",     color: "cyan",   img: "assets/images/cert-hourofcode.png" },
 ];
 
+const references = [
+  {
+    name: "Ms. Naduni Ranatunga",
+    designation: "Academic Instructor",
+    department: "Department of Computer Systems Engineering",
+    institution: "Sri Lanka Institute of Information Technology (SLIIT)",
+    email: "naduni.r@sliit.lk"
+  },
+  {
+    name: "Mr. Ganidu Bandara",
+    designation: "Senior Site Reliability Engineer",
+    institution: "CodeGen",
+    email: "ganidu@codegen.net"
+  }
+];
+
 // ============ RENDER SKILLS ============
 const skillsGrid = document.getElementById("skills-grid");
 skills.forEach((s, i) => {
@@ -222,6 +238,42 @@ education.forEach((e, i) => {
   }
 });
 
+// ============ RENDER REFERENCES ============
+const referencesGrid = document.getElementById("references-grid");
+references.forEach((r, i) => {
+  const card = document.createElement("div");
+  card.className = "referee-card anim-reveal p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/10 flex flex-col justify-between hover:border-purple-500/25 transition-all duration-300";
+  card.style.animationDelay = `${i * 0.1}s`;
+  
+  // Extract initial from name, removing prefix
+  const cleanedName = r.name.replace(/^(Mr\.|Ms\.|Dr\.)\s+/i, '');
+  const initial = cleanedName.charAt(0);
+
+  card.innerHTML = `
+    <div>
+      <div class="flex items-center gap-4 mb-6">
+        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center border border-purple-500/30 text-purple-400 font-['Space_Grotesk'] font-bold text-lg flex-shrink-0">
+          ${initial}
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold font-['Space_Grotesk'] text-white">${r.name}</h3>
+          <p class="text-purple-400 text-xs tracking-wider uppercase font-medium mt-0.5">${r.designation}</p>
+        </div>
+      </div>
+      <div class="space-y-1 mb-6 text-sm text-gray-400 leading-relaxed">
+        ${r.department ? `<p>${r.department}</p>` : ''}
+        <p class="font-medium text-gray-300">${r.institution}</p>
+      </div>
+    </div>
+    <a href="mailto:${r.email}" class="inline-flex items-center gap-2 text-sm text-purple-400 hover:text-purple-300 transition-colors self-start focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-500/50">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+      ${r.email}
+    </a>
+  `;
+  referencesGrid.appendChild(card);
+});
 
 // ============ SCROLL ANIMATIONS ============
 
