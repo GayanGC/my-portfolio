@@ -14,16 +14,10 @@ const projects = [
     img: "assets/images/project-gatepass.png",
     title: "GatePass POS",
     tagline: "Hardware-Integrated, Offline-First Event Ticketing & Gate Control System",
-    category: "Full-Stack / Desktop POS / System Architecture",
+    category: "FULL-STACK / DESKTOP POS / SYSTEM ARCHITECTURE",
     featured: true,
     tag: "fullstack",
-    desc: "A high-performance offline-first Desktop POS & Gate Control System featuring silent 80mm thermal receipt printing via Electron IPC, anti-passback QR check-in scanner, and reactive IndexedDB/PouchDB multi-terminal sync.",
-    highlights: [
-      "Silent Hardware Thermal Printing: Electron IPC Bridge for 80mm slip printers with custom @media print CSS rules",
-      "Offline-First Sync Architecture: Zero-downtime IndexedDB/PouchDB local storage with reactive db.changes live admin dashboard sync",
-      "Anti-Passback Hardware Check-In: Camera-based QR scanner blocking duplicate ticket entries ('ALREADY CHECKED IN') and fraudulent passes in real-time",
-      "Cross-Platform Executables: Packaged executable binaries (.exe) and setup installers via Electron Builder"
-    ],
+    desc: "Hardware-integrated, offline-first Event POS solution featuring silent 80mm thermal receipt printing via Electron IPC, reactive admin analytics, and real-time anti-passback QR camera scanner.",
     tech: ["React.js", "Electron.js", "PouchDB", "IndexedDB", "Tailwind CSS", "Recharts", "HTML5-QRCode", "Vite"],
     link: "https://github.com/GayanGC/Event-Ticketing-System",
     linkType: "github",
@@ -34,17 +28,10 @@ const projects = [
     img: "assets/images/project-fitpulse.png",
     title: "FitPulse AI",
     tagline: "Multi-Tenant AI Gym Management SaaS & Member Analytics Platform",
-    category: "SaaS Product / Enterprise Full-Stack",
+    category: "SAAS PRODUCT / ENTERPRISE FULL-STACK",
     featured: true,
     tag: "saas",
-    desc: "An enterprise-grade multi-tenant Gym SaaS with RBAC, PayHere LANKAQR payment flows, local bank slip queue, Dialog BizSMS & WhatsApp automated retention alerts, POS terminal with printable receipts, AI OCR receipt reader, and i18n English/Sinhala support.",
-    highlights: [
-      "Multi-Tenant Role-Based Access Control (RBAC): Isolated contexts for Super Admin, Gym Owners, Trainers, and Members",
-      "Sri Lankan Market Integrations: PayHere LANKAQR payment flows, local bank slip upload queue, and Dialog BizSMS automated SMS alerts",
-      "Gym POS & Inventory System: Real-time stock decrementation terminal supporting cash, card, and member credit tab billing with printable thermal receipts",
-      "AI & Automation Workflows: Inactivity detection retention engine (5+ days inactive alerts), automated WhatsApp birthday triggers, and AI OCR bank receipt reader",
-      "Bilingual i18n Support: Dynamic English/Sinhala toggle for member apps and customizable privacy settings for member profiles"
-    ],
+    desc: "Enterprise SaaS platform with RBAC multi-tenant architecture, PayHere LANKAQR integrations, Dialog BizSMS gateway, POS supplement shop, inactivity retention engine, and AI OCR bank receipt verifier.",
     tech: ["Next.js 14", "TypeScript", "Tailwind CSS", "PayHere Gateway", "LANKAQR", "Dialog BizSMS API", "WhatsApp Cloud API", "AI OCR"],
     link: "https://github.com/GayanGC/gym-system",
     linkType: "github",
@@ -163,7 +150,7 @@ function getProjectIcon(p) {
 }
 
 function getProjectLink(p) {
-  return p.link || "https://github.com/GayanGC/";
+  return p.githubUrl || p.link || "https://github.com/GayanGC/";
 }
 
 function renderProjects(filter = "all") {
@@ -182,21 +169,10 @@ function renderProjects(filter = "all") {
     const linkLabel = p.linkLabel || "View on GitHub";
 
     const taglineHtml = p.tagline ? `<p class="text-purple-300 text-xs font-semibold mt-1 mb-2 leading-relaxed tracking-wide">${p.tagline}</p>` : "";
-    
-    let highlightsHtml = "";
-    if (p.highlights && p.highlights.length > 0) {
-      const items = p.highlights.map(h => `
-        <li class="flex items-start gap-2 text-xs text-gray-300 leading-relaxed">
-          <span class="text-purple-400 font-bold text-xs mt-0.5 flex-shrink-0">✓</span>
-          <span>${h}</span>
-        </li>
-      `).join("");
-      highlightsHtml = `<ul class="space-y-2 my-3 bg-white/[0.03] border border-white/10 rounded-xl p-3.5 backdrop-blur-sm">${items}</ul>`;
-    }
 
     card.innerHTML = `
       ${featuredBadge}
-      <div class="overflow-hidden relative group h-56 bg-white/[0.02]">
+      <div class="overflow-hidden relative group h-52 bg-white/[0.02]">
         <img src="${p.img}" alt="${p.title}" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
         <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent opacity-80"></div>
       </div>
@@ -205,8 +181,7 @@ function renderProjects(filter = "all") {
           <span class="text-purple-400 text-xs tracking-widest uppercase font-bold">${p.category}</span>
           <h3 class="text-xl font-bold font-['Space_Grotesk'] mt-1 text-white">${p.title}</h3>
           ${taglineHtml}
-          <p class="text-gray-400 text-xs mt-2 mb-3 leading-relaxed">${p.desc}</p>
-          ${highlightsHtml}
+          <p class="text-gray-400 text-xs mt-2 mb-4 leading-relaxed">${p.desc}</p>
         </div>
         <div class="mt-4 pt-4 border-t border-white/5">
           <div class="flex flex-wrap gap-1.5 mb-4">${techHtml}</div>
